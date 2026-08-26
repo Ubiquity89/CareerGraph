@@ -8,7 +8,7 @@
 
 **Backend API:** https://careergraph-6ywd.onrender.com/
 
-**GitHub:** https://github.com/YOUR_USERNAME/careergraph
+**GitHub:** https://github.com/Ubiquity89/careergraph
 
 ---
 
