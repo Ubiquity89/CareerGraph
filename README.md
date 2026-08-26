@@ -44,17 +44,12 @@ GET  /api/skills
 POST /api/analyze
 GET  /api/graph/:jobId
 Run Locally
+
 Backend
 cd server
 npm install
 npm run dev
 
-Create server/.env:
-
-COGNODB_URI=your_uri
-COGNODB_USER=your_username
-COGNODB_PASSWORD=your_password
-PORT=5000
 Frontend
 cd client
 npm install
@@ -63,6 +58,7 @@ npm run dev
 Create client/.env:
 
 VITE_API_URL=http://localhost:5000/api
+
 Live Demo
 
 Frontend:
