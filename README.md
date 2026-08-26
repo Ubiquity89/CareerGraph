@@ -1,71 +1,72 @@
 # CareerGraph
 
-> A graph-based career skill and learning path explorer powered by CognoDB.
+CareerGraph is a graph-based career recommendation application that helps users identify the skills needed for their target job role.
 
-## Live Demo
+Users can select a target role and their existing skills to get:
 
-**Frontend:** https://career-graph-lilac.vercel.app/
-
-**Backend API:** https://careergraph-6ywd.onrender.com/
-
-**GitHub:** https://github.com/Ubiquity89/careergraph
-
----
-
-## 1. Project Overview
-
-CareerGraph is a graph-based career recommendation application that helps users understand the skills they need to move toward a target job role.
-
-A user selects:
-
-- A target career role
-- Their existing skills
-
-CareerGraph then analyzes the graph to identify:
-
-- Current skill match percentage
+- Skill match percentage
 - Missing skills
-- Related skills worth exploring
+- Related skill recommendations
 - Recommended courses
 - Recommended projects
-- Connections between job roles and skills
+- Interactive career skill graph
 
-The application uses a graph database because career skills naturally form a network of relationships.
+## Tech Stack
 
----
+- **Frontend:** React, Vite, Tailwind CSS, React Flow
+- **Backend:** Node.js, Express.js
+- **Database:** CognoDB / Neo4j, Cypher
+- **Deployment:** Vercel + Render
 
-## 2. Problem Statement
+## Architecture
 
-Choosing a career path is often difficult because users may know their target role but not understand:
+React Frontend
+      ↓
+Express REST API
+      ↓
+Neo4j Driver
+      ↓
+CognoDB
+      ↓
+Cypher Queries
 
-- Which skills are required
-- Which skills they already have
-- Which skills they are missing
-- Which additional skills are related
-- Which courses can help develop those skills
-- Which projects can provide practical experience
+Graph Model
+JobRole ──REQUIRES──> Skill
+Skill ──RELATED_TO──> Skill
+Course ──TEACHES──> Skill
+Project ──USES──> Skill
 
-CareerGraph models these relationships as a graph and uses graph traversal to generate recommendations.
+The graph database is useful because career recommendations require traversing relationships between jobs, skills, courses, and projects.
 
----
+Main API
+GET  /api/jobs
+GET  /api/skills
+POST /api/analyze
+GET  /api/graph/:jobId
+Run Locally
+Backend
+cd server
+npm install
+npm run dev
 
-## 3. Why a Graph Database?
+Create server/.env:
 
-Career information is highly connected.
+COGNODB_URI=your_uri
+COGNODB_USER=your_username
+COGNODB_PASSWORD=your_password
+PORT=5000
+Frontend
+cd client
+npm install
+npm run dev
 
-For example:
+Create client/.env:
 
-```text
-Job Role
-   |
-   | REQUIRES
-   v
-Skill
-   |
-   | RELATED_TO
-   v
-Related Skill
-   |
-   | REQUIRES
-   v
-Another Job Role
+VITE_API_URL=http://localhost:5000/api
+Live Demo
+
+Frontend:
+https://career-graph-lilac.vercel.app/
+
+Backend:
+https://careergraph-6ywd.onrender.com/
